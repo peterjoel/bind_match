@@ -1,0 +1,16 @@
+[package]
+name = "bind_match"
+version = "0.1.0"
+authors = ["Peter Hall <peterjoel@gmail.com>"]
+edition = "2018"
+License = "MIT"
+description = """
+Convenience macro similar to `matches!` but lets you bind to variables in a pattern and return an `Option` of the result.
+"""
+documentation = "https://github.com/peterjoel/bind_match"
+homepage = "https://github.com/peterjoel/bind_match"
+repository = "https://github.com/peterjoel/bind_match"
+keywords = ["macro", "pattern", "match"]
+categories = ["rust-patterns"]
+
+[dependencies]
