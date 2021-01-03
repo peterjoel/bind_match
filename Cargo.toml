@@ -3,7 +3,7 @@ name = "bind_match"
 version = "0.1.0"
 authors = ["Peter Hall <peterjoel@gmail.com>"]
 edition = "2018"
-License = "MIT"
+license = "MIT"
 description = """
 Convenience macro similar to `matches!` but lets you bind to variables in a pattern and return an `Option` of the result.
 """
