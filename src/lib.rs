@@ -8,7 +8,8 @@
 ///
 /// `bind_match!(input_expr, pattern if guard => binding_expr)`
 ///
-/// The `binding_expr` is returned, with variables bound in the pattern.
+/// The `binding_expr` is returned, with variables bound in the pattern. If no binding
+/// expression is given then the result is `Some(())`.
 ///
 /// ## Example
 ///
@@ -45,11 +46,34 @@
 /// #     foo: Foo,
 /// #     fun: bool,
 /// # }
-/// fn fun_when_open(bars: impl IntoIterator<Item = Bar>) -> Option<bool> {
-///     bars.into_iter()
-///         .filter_map(|bar| bind_match!(bar, Bar { foo: Foo::B { open, .. }, fun } if open => fun ))
-///         .next()
-/// }
+/// # fn main() {
+/// let bar = Bar {
+///     foo: Foo::A(Some(42), true),
+///     fun: false,
+/// };
+/// let result = bind_match!(bar, Bar { foo: Foo::A(Some(n), x), fun } if !fun => (n, x));
+/// assert_eq!(result, Some((42, true)));
+/// # }
+/// ```
+/// The binding expression can be omitted, in which case it defaults to `Some(())`:
+/// ```
+/// # use bind_match::bind_match;
+/// # enum Foo {
+/// #     A(Option<i32>, bool),
+/// #     B { open: bool, closed: bool },
+/// # }
+/// # struct Bar {
+/// #     foo: Foo,
+/// #     fun: bool,
+/// # }
+/// # fn main() {
+/// let bar = Bar {
+///     foo: Foo::A(Some(42), true),
+///     fun: false,
+/// };
+/// let result = bind_match!(bar, Bar { foo: Foo::A(Some(n), x), fun } if fun);
+/// assert!(result.is_none());
+/// # }
 /// ```
 #[macro_export]
 macro_rules! bind_match {
@@ -58,5 +82,11 @@ macro_rules! bind_match {
             $($pattern)|+ $(if $guard)? => Some($binding_expr),
             _ => None
         }
-    }
+    };
+    ($expression: expr, $($pattern: pat)|+ $(if $guard: expr)?) => {
+        match $expression {
+            $($pattern)|+ $(if $guard)? => Some(()),
+            _ => None
+        }
+    };
 }

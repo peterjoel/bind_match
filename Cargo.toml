@@ -5,9 +5,9 @@ authors = ["Peter Hall <peterjoel@gmail.com>"]
 edition = "2018"
 license = "MIT"
 description = """
-Convenience macro similar to `matches!` but lets you bind to variables in a pattern and return an `Option` of the result.
+Convenience macro similar to `matches!` but binds to variables in a pattern and returns an `Option` of the result.
 """
-documentation = "https://github.com/peterjoel/bind_match"
+documentation = "https://docs.rs/bind_match"
 homepage = "https://github.com/peterjoel/bind_match"
 repository = "https://github.com/peterjoel/bind_match"
 keywords = ["macro", "pattern", "match"]
