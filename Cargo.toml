@@ -1,11 +1,11 @@
 [package]
 name = "bind_match"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Peter Hall <peterjoel@gmail.com>"]
 edition = "2018"
 license = "MIT"
 description = """
-Convenience macro similar to `matches!` but binds to variables in a pattern and returns an `Option` of the result.
+Convenience macro similar to `matches!` but binds to variables in the pattern and returns an `Option` of the result.
 """
 documentation = "https://docs.rs/bind_match"
 homepage = "https://github.com/peterjoel/bind_match"
